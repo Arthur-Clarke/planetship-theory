@@ -5,6 +5,7 @@ var gravidade = 0.05;
 var naveX = 0;
 var naveY = 0;
 var landingZone,landingZoneImg;
+var state = "waiting";
 
 function preload()
 {
@@ -32,13 +33,26 @@ function draw()
   background(51);
   image(bg_img,0,0);
   
-  if(nave.collide(landingZone)){
-    stop()
+
+  if(state == "waiting"){
+    if(keyDown("SPACE")){
+      state = "playing";
+    }
+    fill("chocolate")
+    textSize(24);
+    text("aperte espaço para começar",350,350);
+
+  }
+  else if(state == "playing"){
+    if(nave.collide(landingZone)){
+      stop()
+    }
+    naveY +=gravidade;
+    nave.position.y +=naveY;
+    nave.position.x +=naveX;
   }
 
-  naveY +=gravidade;
-  nave.position.y +=naveY;
-  nave.position.x +=naveX;
+
   drawSprites();
 }
 
