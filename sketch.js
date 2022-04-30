@@ -1,8 +1,9 @@
 var bg_img;
 var nave, naveImg;
 var solo;
-var gravidade = 1;
-var naveY = 0, naveX = 0;
+var gravidade = 0.05;
+var naveX = 0;
+var naveY = 0;
 
 function preload()
 {
@@ -24,9 +25,9 @@ function draw()
   background(51);
   image(bg_img,0,0);
   
-  naveY = naveY + gravidade;
-  nave.position.y = naveY;
-  nave.position.x = naveX;
+  naveY +=gravidade;
+  nave.position.y+=naveY;
+  nave.position.x +=naveX;
   drawSprites();
 }
 
@@ -43,13 +44,17 @@ function keyPressed(){
 }
 
 
-function naveUp() {
-  // naveY = naveY - 1; 
-  naveY -= 10;
+function naveUp()
+{
+  naveY = -1;
 }
-function naveLeft() {
-  naveX -= 5;
+
+function naveRight()
+{ 
+  naveX += 0.2;
 }
-function naveRight() {
-  naveX += 5;
+
+function naveLeft()
+{
+  naveX -= 0.2;
 }
